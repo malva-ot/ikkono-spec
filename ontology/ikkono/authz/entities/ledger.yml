@@ -1,9 +1,11 @@
 name: Ledger
 namespace: authz
-description: A container that contains self-consistent authorization records
+description: A collection of self-consistent authorization records
 
 attributes:
-  moniker: default
+  moniker: 
+    default: '*'
+    description: The local semantic identifier for the ledger. Only needs to be unique *per authority*
   displayName: default
 
 relations:

@@ -1,4 +1,4 @@
-name: Delegate
+name: Delegation
 namespace: authn
 description: A delegation of representation from one principal to another (an agent)
 
@@ -22,6 +22,6 @@ relations:
   statements: default
 
 notes: >-
-  A delegate allows one principal to act on behalf of another. An issuing principal (often 
+  A delegation allows one principal to act on behalf of another. An issuing principal (often 
   an authority) can prevent a single actor from acting unilaterally by specifying a 
   consensus auth method as the required authentication method (authnMethod).

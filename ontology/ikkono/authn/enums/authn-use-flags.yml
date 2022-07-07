@@ -10,8 +10,8 @@ flags:
   'ikkono:multi-factor':
     name: MultiFactor
     description: The authentication method can only be used as an element of a multi factor authentication
-  'ikkono:delegate':
-    name: Delegate
+  'ikkono:delegation':
+    name: Delegation
     description: The authentication method can only be used to authenticate on behalf of another principal, e.g. as a delegate
   'ikkono:indirect':
     name: Indirect

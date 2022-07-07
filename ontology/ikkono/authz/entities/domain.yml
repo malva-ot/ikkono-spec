@@ -3,9 +3,14 @@ namespace: authz
 description: A collection of ontology definitions
 
 attributes:
-  moniker: default
+  moniker: 
+    default: '*'
+    description: The local semantic identifier for the domain. Only needs to be unique *per authority*
   displayName: default
 
+mutators:
+  - setMoniker(moniker)
+  
 relations:
   authority:
     type: ent:authz.Authority

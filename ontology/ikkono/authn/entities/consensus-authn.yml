@@ -24,7 +24,7 @@ notes: >-
   e.g. an issuing authority. The individual component methods each belong to other principals, 
   usually actors, which will authenticate in order to act on behalf of the authority.
 
-  In order for some action to be valid, there must *also* be valid delegation (authz.Delegate)
+  In order for some action to be valid, there must *also* be valid delegation (authz.Delegation)
   records for each of the principals authenticating on behalf of the issuer. That is, the 
   consensus auth specifies how the delegated actors must prove their identity, but does not 
   in itself give those actors the power to act on behalf of the issuing authority, while the

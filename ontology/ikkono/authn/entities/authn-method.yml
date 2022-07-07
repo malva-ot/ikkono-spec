@@ -3,16 +3,26 @@ namespace: authn
 description: The description of an authentication method that may be used to prove the identity of a principal
 
 attributes:
-  moniker:
-    type: moniker-type
-    description: The local semantic identifier for the authentication method. Should be unique per principal
+  principalId:
+    type: long
+    op: write-once
+    rel: principal
+    description: The id of the principal which declares the authn method
+  moniker: 
+    default: '*'
+    description: The local semantic identifier for the authentication method. Only needs to be unique *per principal*
   displayName: default
   type:
     type: enum:authn.AuthnMethodType
+    op: write-once
     description: The code of the authentication method type
   useFlags:
     type: enum:authn.AuthnUseFlags
+    op: write-once
     description: Flags restricting the use of the authentication method
+
+mutators:
+  - signature: setMoniker(moniker)
 
 relations:
   statements: default
