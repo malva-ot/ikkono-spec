@@ -1,0 +1,38 @@
+Can (Josh)-[READ]->(asset:x.pdf)?
+{
+  "passport": "Joshua (Mallowfields)",
+  "action": "READ"
+  "scope": [
+    "asset:x.pdf",
+    "folder:2023",
+    "folder:flyers",
+    "project:coit",
+    "campaign:comm-gardens",
+    "collection:print-assets",
+    "collection:initiatives",
+    "initiative:food-security",
+    "org:entf",
+    "org:kent-county"
+  ]
+}
+ 
+Who can read asset:x.pdf?
+(*)-[READ]->(asset:x.pdf)?
+{
+  "action": "READ",
+  "scope": [
+    "asset:x.pdf",
+    "folder:2023",
+    "folder:flyers",
+    "project:coit",
+    "campaign:comm-gardens",
+    "collection:print-assets",
+    "collection:initiatives",
+    "initiative:food-security",
+    "org:entf",
+    "org:kent-county"
+  ],
+  "attributes": {
+    "W": "Hello"
+  }
+}

@@ -1,0 +1,56 @@
+ // Plain boring diffstream
+
+ROOT my-graph DIFFSTREAM/1:deliberation
+Ref: root
+Content-Length: 412
+
+CREATE examples/foo.txt
+Content-Length: 40
+Content-Type: text/plain
+
+Hello, this is the literal file content.
+.
+CREATE examples/bar.md
+Content-Length: 214
+Content-Type: text/markdown
+
+# Markdown
+
+Yep, this is a markdown file embedded in a diffstream.
+
+Interesting points:
+
+  - This is the second file embedded in a single document / commit
+  - Another bullet point for the sake of having one
+.
+JOIN mr-wuffles
+.
+f36bc60ce89868c891a6734c805025adaf48cf4e
+.
+
+
+GET my-graph DIFFSTREAM/1
+Ref: f36bc60ce89868c891a6734c805025adaf48cf4e
+.
+
+
+VOTE mfc/council-2021-39/motion-12 DIFFSTREAM/1:deliberation
+Author: joshua-honig
+Signature: @joshua-honig:keys:council-2139
+Ref: 7e55ec34e3cbc76480655f8bd14c4659818bc918
+Ref: b8f21b5d493cf016fbc40324d6e75acb6ba86a10
+Selection: no
+.
+61fc89964f5b1670f8df64f7014377fb257dd79fe167617cf1c63a80f1897441
+600eabea91b87f174a2eaf69b2029738b6a1dda29aa6b2fa9b0ca58821967e6e
+.
+494dca4f8cfb475577d389c3c10f8f47b4a1dd2a
+.
+
+
+
+
+
+
+JOIN bobby
+.

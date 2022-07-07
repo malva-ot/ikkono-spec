@@ -1,0 +1,143 @@
+**Signatures are fake**
+   
+// 1: Establish notary with root key
+ 
+ESTABLISH ikkono:authority:[notary-xid] IKKONO/1
+Ref: root
+Signature: ed25519;.:keys:Malva-Root-A@96ece3e9
+Content-Length: 397
+
+CREATE .:keys:Malva-Root-A DIFFSTREAM/1
+Object-Type: ikkono[1.v]:octet-key-pair
+.Curve: ed25519
+.X;b64: RVMEHWtQkyjLFyQQmm6KCa2IFpmTrC4G9nPeoMPobBc=
+.Use: signature
+.Display-Name: Malva Notary Root Key A
+.Thumbprint: 96ece3e956bd7459751f3f57a431d03761d59ffc
+.
+IDENTIFY .:authn:root-key IKKONO/1:key-auth
+Key-ID: .:keys:Malva-Root-A
+Thumbprint: 96ece3e956bd7459751f3f57a431d03761d59ffc
+.
+c6dadde0c728231c48355f56c117a8b2a5d4e394d568a15e21579a6e8b897a0d
+f985b407393394fa5b4a0effa1547b5580386aa562579e5e387fbf6f8db590bf
+.
+6de49fe22c770ef15f5c0c75605049b3682e5cb7
+.
+
+
+// 2. Publish intermediate notary key 
+
+ATTRIBUTE ikkono:authority:[notary-xid] IKKONO/1
+Ref: 6de49fe22c770ef15f5c0c75605049b3682e5cb7
+Signature: ed25519;.:keys:Malva-2021-A@583c85f1
+Signature: ed25519;.:keys:Malva-Root-A@96ece3e9
+Content-Length: 480
+
+CREATE .:keys:Malva-2021-A DIFFSTREAM/1
+Object-Type: ikkono[1.v]:octet-key-pair
+.Curve: ed25519
+.X;b64: RVMEHWtQkyjLFyQQmm6KCa2IFpmTrC4G9nPeoMPobBc=
+.Use: signature
+.Display-Name: Malva Notary Intermediate Key 2021-A
+.Valid-From: 2021-01-01T00:00:00Z
+.Valid-To: 2022-12-31T23:59:59Z
+.Thumbprint: 583c85f17662a40c3f32d3d74e5ecc2ff0ed7b8b
+.
+IDENTIFY .:authn:2021-key-A IKKONO/1:key-auth
+Key-ID: .:keys:Malva-2021-A
+Thumbprint: 583c85f17662a40c3f32d3d74e5ecc2ff0ed7b8b
+.
+ba525d3b63a178723fe9388a59a2bdccdc45ed531ed5aaa1e655ceba74256ca5
+ba4e444ff73ff2dfbff765791e130496c2f29348c83da0e5a7bb550dd2befe1a
+.
+7c93d00b5d6ed59d520d94276f3182d25138f7819224dc7dad5fa73beae40d00
+f94bfc8b43f838541cf6f5bba87975763982bc9ac77c8858b6535dfec69ab26e
+.
+65ff4a9649ee5de463df9cb2d9304b7596270d48
+.
+
+
+// 3. Publish actor with root key, notary multi-factor auth
+
+INTRODUCE ikkono:actor:[actor-xid] IKKONO/1
+Ref: root
+Var: notary=ikkono:authority:[notary-xid]
+Ref: $notary:65ff4a9649ee5de463df9cb2d9304b7596270d48
+Timestamp: 2021-07-05T17:17:23Z
+Signature: ed25519;.:Root-Ed25519-A@e0aeaa0e
+Signature: ed25519;$notary:keys:Malva-2021-A@583c85f1
+Content-Length: 755
+
+CREATE [actor-xid]:Root-Ed25519-A DIFFSTREAM/1
+Object-Type: ikkono[1.v]:octet-key-pair
+.Curve: ed25519
+.X;b64: LhjJiAHLfXHASPqp0cMv0LVVjqhYzvaTqGS5vqOuDIw=
+.Use: signature
+.Display-Name: [actor] Root Key (Ed25519)
+.Thumbprint: e0aeaa0e2f7a62f236a7c290e25e983b26a35047
+.
+IDENTIFY .:authn:root-key IKKONO/1:key-auth
+Key-ID: [actor-xid]:Root-Ed25519-A
+Thumbprint: 8ddce1d6916e15b5c74fd462f44526fda36e8b4d
+Restrict: multi-factor
+.
+IDENTIFY .:authn:notary IKKONO/1:notary-key-auth
+Notary-ID: $notary
+Key-ID: $notary:keys:Malva-Root-A
+Thumbprint: 96ece3e956bd7459751f3f57a431d03761d59ffc
+Restrict: multi-factor
+.
+IDENTIFY .:authn:notarized-root IKKONO/1:multi-auth
+Method-Count: 2
+Method-Ref: .:authn:root-key
+Method-Ref: .:authn:notary
+.
+ff932e2334f68f58ffa2659c2e21d434e93102682873397cc3a4d5ef9b3a8e82
+4387bc154b524142f2639b2417eb29947f291594974a468c5ab15f9021a0bdc4
+.
+14e258a765bfe996f0c075c4d81564d77a406f7125f9eaf9412fbb99f2b12051
+a6d60f3593822fc0407ea4d7d481b4444d8716e0304b9e1bf75f6635034fa43f
+.
+a1fe505716d9c8d56633b5e2833d18b5ca7c8c5e
+.
+
+// 4. Publish actor intermediate key
+
+ATTRIBUTE ikkono:actor:[actor-xid] IKKONO/1
+Ref: a1fe505716d9c8d56633b5e2833d18b5ca7c8c5e
+Var: notary=ikkono:authority:[notary-xid]
+Signature: ed25519;.:keys:Ed25519-2021-A@242e5769
+Signature: ed25519;.:keys:Root-Ed25519-A@e0aeaa0e
+Signature: ed25519;$notary:keys:Malva-2021-A@583c85f1
+Content-Length: 574
+
+CREATE .:keys:Ed25519-2021-A DIFFSTREAM/1
+Object-Type: ikkono[1.v]:octet-key-pair
+.Curve: ed25519
+.X;b64: XXimV1wUtLYLs3BPemd/MlB+39R3ytBCnZ1wBql/LbM=
+.Use: signature
+.Display-Name: [actor] Ed25519 Signature Key - 2021
+.Thumbprint: 242e57694f9131193fce1d3f55cc65fba3da7651
+.
+IDENTIFY .:authn:2021-key IKKONO/1:key-auth
+Key-ID: .:keys:Ed25519-2021-A
+Thumbprint: 242e57694f9131193fce1d3f55cc65fba3da7651
+Restrict: multi-factor
+. 
+IDENTIFY .:authn:notarized-2021-key IKKONO/1:multi-auth
+Method-Count: 2
+Method-Ref: .:authn:2021-key
+Method-Ref: .:authn:notary
+.
+98911efa4f2fc0ebfbd7e90a51514fe0b21e66ae91b4ca66b6cbd8afd7d5e6ba
+f04bf029403601421fcaacc33fc460e689ac0567ea40bbe4c7b8448457111326
+.
+f02e19056025a07b1d238fc6080626f16bf1262acf7fd0b08f0c6187f17deb0e
+b785d211aa5a86630c894ac6b1f4dbc092531965eae956715e697653c4188a9f
+.
+38810f83341447106bc31e463409ff9a31a1f59e638623ce2f60b341e3339ff3
+ffaa8e2fe5588b7d0b08f927cb103d5469db222222ec3bb25d4153d361052c38
+.
+87933fc292d00cc6d151371b3164e6468522ee7b
+.
