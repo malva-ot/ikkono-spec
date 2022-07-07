@@ -1,0 +1,19 @@
+name: DomainVersion
+namespace: authz
+description: A version of a domain
+
+attributes:
+  version:
+    type: version
+    description: The version number of the domain version
+
+relations:
+  domain:
+    type: ent:authz.Domain
+    relation: N:1
+    description: The domain of which this domain version is a version
+  namespaces:
+    type: ent:authz.Namespace[]
+    relation: 1:N
+    description: The collection of namespaces within the domain
+  statements: default

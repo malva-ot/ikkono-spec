@@ -1,0 +1,33 @@
+name: Passport
+namespace: authz
+description: Revocable recognition of an actor within a ledger
+
+attributes:
+  key: default
+  alias:
+    type: moniker-type
+    description: The moniker for the passport within the ledger
+  displayName: default
+  actor:
+    type: ent:authz.Actor
+    description: The actor to be recognized within the ledger
+  state:
+    type: enum:authz.AuthState
+    description: The current state / validity of the passport
+
+relations:
+  ledger:
+    type: ent:authz.Ledger
+    description: The ledger which declares the passport
+  statements: default
+
+notes: >-
+  A passport is approximately equivalent to the "user" concept in most existing
+  software applications, or an "employee" within most institutional directories.
+
+  The alias for a passport would generally be the moniker adopted by the actor
+  themselves, unless there is a naming conflict within a ledger, or the owner of 
+  the ledger wishes to apply some particular naming convention.
+
+  Likewise the displayName would generally be adopted from the actor, unless the 
+  ledger owner has specific standards or conventions about display names

@@ -1,0 +1,25 @@
+name: Ledger
+namespace: authz
+description: A collection of self-consistent authorization records
+
+attributes:
+  moniker: 
+    default: '*'
+    description: The local semantic identifier for the ledger. Only needs to be unique *per authority*
+  displayName: default
+
+relations:
+  authority:
+    type: ent:authz.Authority
+    relation: N?:1
+    description: The authority which owns the ledger
+  passports:
+    type: ent:authz.Passport[]
+    description: The passports granted within the ledger
+  roles:
+    type: ent:authz.Role[]
+    description: All the roles defined in the ledger
+  assignments:
+    type: ent:authz.Assignment[]
+    description: All the current assignments in the ledger
+  statements: default

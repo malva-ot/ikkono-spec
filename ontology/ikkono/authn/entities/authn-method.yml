@@ -1,0 +1,51 @@
+name: AuthnMethod
+namespace: authn
+description: The description of an authentication method that may be used to prove the identity of a principal
+
+attributes:
+  principalId:
+    type: long
+    op: write-once
+    rel: principal
+    description: The id of the principal which declares the authn method
+  moniker: 
+    default: '*'
+    description: The local semantic identifier for the authentication method. Only needs to be unique *per principal*
+  displayName: default
+  type:
+    type: enum:authn.AuthnMethodType
+    op: write-once
+    description: The code of the authentication method type
+  useFlags:
+    type: enum:authn.AuthnUseFlags
+    op: write-once
+    description: Flags restricting the use of the authentication method
+
+mutators:
+  - signature: setMoniker(moniker)
+
+relations:
+  statements: default
+  principal:
+    type: ent:authn.Principal
+    relation: N?:1
+    description: The principal to which this method belongs
+    label: authenticates
+
+notes: >-
+  ikkono can *mention* absolutely any conceivable authentication method, including ones that 
+  have not yet been invented. Identifying the authentication method type is done with the type
+  attribute here on the base AuthnMethod entity. 
+
+  Any given authentication method will require additional information to fully describe it in
+  a way that could be verified. In most cases, that additional information cannot be shared 
+  because it is a secret, or cannot be encoded because it is a physical process that needs to
+  be performed, such as to scan a fingerprint. In these cases, the ikkono ontology itself does 
+  not try to fully describe the particular authentication methods. Those methods are represented
+  just by using this base entity, with the applicable value in the type attribute.
+
+  There are exactly three authentication methods which can be fully described and shared publicly
+  in a way that they can be proven: signature authentication, notary authentication, which is 
+  essentially signature authentication by proxy, and multi-factor authentication, which is 
+  signature authentication by composition. These three authentication methods are therefore
+  described in detail with the inherited entities SignatureAuth, NotaryAuth, and MultiFactorAuth.

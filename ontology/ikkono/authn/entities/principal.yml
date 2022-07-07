@@ -1,0 +1,63 @@
+name: Principal
+namespace: authn
+description: The abstract base entity for actors and authorities
+
+attributes:
+  key: default
+  moniker: 
+    default: '*'
+    flags: unique
+    description: A semantic identifier for a principal that is unique within a service network
+  displayName: default
+  isActive:
+    type: bool 
+    op: all
+    flags: protected-set
+    description: Whether the principal is current and active
+  inactiveFlags:
+    type: enum:authn.InactiveFlags
+    op: all
+    flags: protected-set
+    description: The reason(s) why the record is not active
+  principalType:
+    type: enum:authn.PrincipalType
+    op: write-once # create,read
+    description: The kind of actor or authority
+
+mutators:
+  - signature: setMoniker(moniker)
+  - signature: setActive
+    sets:
+      isActive: true
+      inactiveFlags: 'none'
+  - signature: setInactive(inactiveFlags)
+    sets:
+      isActive: false
+      inactiveFlags: $inactiveFlags
+
+relations:
+  authnMethods:
+    type: ent:authn.AuthnMethod[]
+    relation: 1:N?
+    description: The list of currently defined authentication methods for the principal
+  keys:
+    type: ent:authn.AsymmetricKey[]
+    relation: 1:N?
+    description: The list of asymmetric keys for this principal
+  delegations:
+    type: ent:authn.Delegation[]?
+    relation: 1:N?
+    description: The delegations of agency issued by this principal
+
+  statements: default
+  actions:
+    type: ent:audit.Statement[]
+    relation: 1:N
+    description: The statements issued by this principal
+
+notes: >-
+  Principals are the fundamental entity type that can authenticate and act. Principals are divided
+  into actors and authorities, which have different capabilities and constraints, but both actors
+  and authorities needs to be able to authenticate, and so they are both principals. Authentication
+  methods and signatures work the same for any principals, so the ontology in those places refers
+  to the Principal entity rather than to Actor and Authority entities.

@@ -1,0 +1,23 @@
+name: Establishment
+namespace: audit
+description: An Establishment warrant, which declares the existence of an Authority
+extends: audit.Warrant
+
+relations:
+  authority:
+    type: ent:authz.Authority
+    relation: 1:1
+    label: establishes
+    description: The authority declared by the warrant
+  statements:
+    type: ent:authz.Statement[]
+    relation: 1:N?
+    description: The initializing statements included within the introduction
+
+notes: >-
+  To be effective, establishment warrants must include at least one identification statement so 
+  that the authority being established can be authenticated, both in the initial introduction
+  itself and an in any subsequent documents.
+
+  Structurally, the establishment is usually a top-level diffstream document, while the
+  identification statement(s) are embedded diffstream statements within the document.

@@ -1,0 +1,39 @@
+name: Header
+namespace: protocol
+description: A header from a diffstream container
+
+attributes:
+  index:
+    type: int
+    description: The integer index of the header within its container
+  type:
+    type: enum:graph.HeaderType
+    description: The type of the header
+  name:
+    type: string
+    description: The raw name of the header
+  code:
+    type: string
+    flags: virtual
+    description: >-
+      The normalized name of the header, which is Pascal-Kebab case per RFC7230 and 
+      conventions of the IANA headers registry (https://www.iana.org/assignments/message-headers/message-headers.xhtml)
+  value:
+    type: string
+    description: The raw value of the header
+  dataType:
+    type: string?
+    description: The data type annotation of the header
+
+relations:
+  container:
+    type: ent:protocol.Container
+    relation: N?:1
+    description: The container which contains the header
+
+notes: >-
+  The name attribute is present to preserve the header name exactly as it was declared by the author 
+  of the container. The code attribute is the normalized version of the header name. For example,
+  normalized header name (code) "Content-Type" could be transmitted in any number of variations per the
+  rules of [RFC7230 Sec.3.2](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2), such as:
+  "content-TYPE", "CONTENT-TYPE", "Content-type", etc.

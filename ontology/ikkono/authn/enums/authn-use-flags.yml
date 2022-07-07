@@ -1,0 +1,28 @@
+name: AuthnUseFlags
+namespace: authn
+description: Flags restricting how an authentication method can be used
+extends: scio:enum
+
+flags:
+  'none':
+    name: Name
+    description: No restrictions
+  'ikkono:multi-factor':
+    name: MultiFactor
+    description: The authentication method can only be used as an element of a multi factor authentication
+  'ikkono:delegation':
+    name: Delegation
+    description: The authentication method can only be used to authenticate on behalf of another principal, e.g. as a delegate
+  'ikkono:indirect':
+    name: Indirect
+    description: The authentication method can only be used indirectly, e.g. by validation through a subkey or notary
+  'ikkono:deferred':
+    name: Deferred
+    description: The authentication method cannot be used in any context
+
+notes: >-
+  Multiple AuthnUseFlags flag values should be interpreted as OR logic: The authentication method can be
+  used in *any* of the flagged contexts. Because of this, the meaning of 0x0 or null is the same as an infinite flag
+  with all bits set. That is, by default authentication methods are implied to be valid for use in any context.
+
+  To define an authentication method that cannot be used at all, use `ikkono:deferred`.

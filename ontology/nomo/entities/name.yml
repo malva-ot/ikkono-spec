@@ -1,0 +1,12 @@
+name: Name
+description: A multi-segment name
+flags: immutable
+
+attributes:
+  segments:
+    type: string[]
+    description: The ordered segments of the name
+
+notes: |
+  The ontology does not describe how names are serialized or delimited. It simply expresses that 
+  a name consists of zero to many ordered segments which are themselves simple strings.

@@ -1,0 +1,25 @@
+name: Record
+namespace: graph
+description: A structured record within the graph
+
+attributes:
+  urn:
+    type: string
+    description: The urn of the record within its containing graph
+  recordType: 
+    type: enum:graph.RecordType
+    description: The overall type of the record -- object, file, etc.
+
+relations:
+  graph:
+    type: ent:graph.Graph
+    relation: N:1
+    description: The graph to which the record belongs
+  documents:
+    type: ent:protocol.Document[]?
+    relation: N:N?
+    description: The documents which modified this record
+  statements:
+    type: ent:protocol.Statement[]?
+    relation: N:N?
+    description: The statements which modified this record

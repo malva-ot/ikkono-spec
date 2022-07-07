@@ -1,0 +1,26 @@
+name: DocSignature
+namespace: protocol
+description: A cryptographic signature on a document
+
+attributes:
+  ordinal:
+    type: int
+    description: The ordinal order of the signature
+  header:
+    type: ent:protocol.DocHeader
+    description: The header which declares the signature
+  key:
+    type: ent:authn.SigningKey
+    description: A reference to the key used in the signature
+  method:
+    type: string
+    description: The identifier of the signature method used
+  signature:
+    type: byte[]
+    description: The raw bytes of the signature
+
+relations:
+  doc:
+    type: ent:protocol.Document
+    relation: N?:1
+    description: The document which contains the signature

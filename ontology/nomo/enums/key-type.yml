@@ -1,0 +1,20 @@
+name: KeyType
+description: The type of a partition or item key
+extends: scio:enum
+
+members:
+  - name: none
+    displayName: None 
+    description: Keys are either not present or not allowed
+
+  - name: nomo:scalar
+    displayName: Scalar
+    description: A single, unnamed scalar key
+
+  - name: nomo:tuple
+    displayName: Tuple
+    description: An ordered set of unnamed scalar values
+  
+  - name: nomo:map
+    displayName: Map
+    description: An set of named scalar values

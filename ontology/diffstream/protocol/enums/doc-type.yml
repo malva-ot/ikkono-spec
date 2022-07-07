@@ -1,0 +1,22 @@
+name: DocType
+namespace: protocol
+description: The type of the graph document
+extends: scio:enum
+
+members:
+  '': 
+    name: Unknown
+    value: 0
+    desc: The type of the document is unknown or unrecognized
+  'file': 
+    name: File
+    value: 1
+    desc: A document with a raw file as a body
+  'diffstream:statement':
+    name: Statement
+    value: 2
+    desc: A document with a set of diffstream encoded statements in the body
+  'no-content': 
+    name: Empty
+    value: 3
+    desc: A document with no body

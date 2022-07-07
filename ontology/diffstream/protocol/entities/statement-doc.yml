@@ -1,0 +1,10 @@
+name: StatementDoc
+namespace: protocol
+description: A document which contains a set of diffstream-encoded statements
+extends: protocol.Document
+
+relations:
+  statements:
+    type: ent:protocol.Statement[]?
+    relation: 1:N
+    description: The collection of statements contained in the body of the document

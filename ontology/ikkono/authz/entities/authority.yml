@@ -1,0 +1,14 @@
+name: Authority
+namespace: authz
+description: An ikkono authority. Represents the trust root of an organization or legal entity
+extends: authn.Principal
+
+relations:
+  domains:
+    type: ent:authz.Domain[]?
+    relation: 1:N?
+    description: The domains owned by this authority
+  ledgers:
+    type: ent:authz.Ledger[]?
+    relation: 1:N?
+    description: The ledgers owned by this authority

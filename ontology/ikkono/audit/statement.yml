@@ -1,0 +1,33 @@
+name: Statement
+namespace: audit
+description: The primitive type for statements, which cause changes in state in an ikkono graph, domain, or ledger
+
+attributes:
+  key: default
+  timestamp: default
+
+relations:
+  author:
+    type: ent:authn.Principal
+    relation: N?:1
+    description: The principal which issued the statement
+  sourceDoc:
+    type: docref?
+    relation: N?:1
+    description: A reference to the diffstream document in which the statement was issued
+  sourceContainer:
+    type: protoref?
+    relation: 1?:1
+    description: A reference to the diffstream document or statement which exactly encoded this statement
+
+  references:
+    type: ent:audit.Statement[]?
+    relation: N?:N?
+    description: References to the other ikkono statements which justify the validity of this statement
+
+notes: >-
+  When an ikkono statement is materialized as a root diffstream document, then both docref
+  and protoref will point to the same object -- the document. If the ikkono statement is 
+  materialized in a statement within a larger document, then docref will point to the document
+  as a whole, while protoref will point to the individual diffstream statement within the 
+  document that encoded this ikkono statement.

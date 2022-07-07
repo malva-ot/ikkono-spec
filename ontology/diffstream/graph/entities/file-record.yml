@@ -1,0 +1,12 @@
+name: FileRecord
+namespace: graph
+description: A raw file stored within the graph
+extends: graph.Record
+
+attributes:
+  contentType: 
+    type: string
+    description: The MIME type of the document body file
+  fileBlob:
+    type: blob
+    description: The raw bytes of the document body file

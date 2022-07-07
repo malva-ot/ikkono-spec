@@ -1,0 +1,15 @@
+name: Group
+namespace: authz
+description: A group of passports, possibly nested
+
+attributes:
+  key: default
+  moniker: default
+  displayName: default
+
+relations:
+  members:
+    type: (ent:authz.Group | ent:authz.Passport)[]
+    relation: N:N
+    description: The members of the group
+  statements: default

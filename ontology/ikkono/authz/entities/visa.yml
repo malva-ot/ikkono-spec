@@ -1,0 +1,30 @@
+name: Visa
+namespace: authz
+description: A temporary recognition of an actor within a ledger
+
+attributes:
+  key: default
+  actor:
+    type: ent:authz.Actor
+    description: The actor to be recognized within the ledger
+  validFrom:
+    type: datetime
+    description: The first datetime at which the visa is valid
+  validTo:
+    type: datetime
+    description: The last datetime at which the visa is valid
+  state:
+    type: enum:authz.AuthState
+    description: The current state / validity of the passport
+
+relations:
+  ledger:
+    type: ent:authz.Ledger
+    description: The ledger which declares the visa
+  statements: default
+
+notes: >-
+  A visa is very similar to a passport, but is intrinsically temporary.
+
+  The intended use case for visas is, in particular, short-lived anonymous
+  authorization tokens such as for sharing resources.

@@ -1,0 +1,16 @@
+name: Identification
+namespace: audit
+description: An Identification warrant, which describes an authentication method for a principal
+extends: audit.Warrant
+
+relations:
+  principal: 
+    type: ent:authn.Principal
+    relation: N:1
+    label: identifies
+    description: The principal that will be authenticated
+  authnMethod:
+    type: ent:authn.AuthnMethod
+    relation: N:1
+    label: declares
+    description: The authentication method described in the warrant

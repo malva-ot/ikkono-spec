@@ -1,0 +1,4 @@
+name: Warrant
+namespace: audit
+description: A statement about identity
+extends: audit.Statement

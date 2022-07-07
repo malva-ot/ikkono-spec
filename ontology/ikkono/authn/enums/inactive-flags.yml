@@ -1,0 +1,27 @@
+name: InactiveFlags
+namespace: authn
+description: Flags describing various, possibly overlapping, reasons why a record is not active
+extends: scio:enum
+
+members:
+  'none':
+    name: None
+    description: No inactive reason. Applies to active records
+  'ikkono:pending': 
+    name: Pending
+    description: A record pending activation or validation
+  'ikkono:revoked':
+    name: Revoked
+    description: A record which was actively revoked
+  'ikkono:expired': 
+    name: Expired
+    description: A record which passively expired
+  'ikkono:purged': 
+    name: Purged
+    description: A record which has been purged, e.g. from a GDPR request
+  'ikkono:disabled':
+    name: Disabled
+    description: A record which has been indefinitely disabled (but could be restored)
+  'ikkono:archived': 
+    name: Archived
+    description: An obsolete record which is no longer useful

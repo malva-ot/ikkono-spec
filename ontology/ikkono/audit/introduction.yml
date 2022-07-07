@@ -1,0 +1,23 @@
+name: Introduction
+namespace: audit
+description: An Introduction warrant, which declares the existence of an actor
+extends: audit.Warrant
+
+relations:
+  actor:
+    type: ent:authz.Actor
+    relation: 1:1
+    label: introduces
+    description: The actor declared by the warrant
+  statements:
+    type: ent:authz.Statement[]
+    relation: 1:N?
+    description: The initializing statements included within the introduction
+
+notes: >-
+  To be effective, introductions must include at least one identification statement so 
+  that the actor being introduced can be authenticated, both in the initial introduction
+  itself and an in any subsequent documents.
+
+  Structurally, the introduction is usually a top-level diffstream document, while the
+  identification statement(s) are embedded statements within the document.

@@ -1,0 +1,12 @@
+name: NameSchemaDef
+description: Standard name schema definitions
+extends: nomo:NameSchema
+
+members:
+  - name: none
+    displayName: None
+    description: A schema which constrains a name to be empty, used for example
+      to express that certain clauses of an address schema are omitted
+    maxCount: 0
+    maxLength: 0
+    keyType: none

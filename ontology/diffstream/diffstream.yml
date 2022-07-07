@@ -1,0 +1,9 @@
+name: diffstream
+description: The ontology of the diffstream protocol
+version: 0.1.0
+schema: scio/0.0
+
+types:
+  sha1:
+    extends: byte[40]
+    description: A 40 byte sha1 hash

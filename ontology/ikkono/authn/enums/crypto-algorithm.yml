@@ -1,0 +1,15 @@
+name: CryptoAlgorithm
+namespace: authn
+description: Identifiers for cryptographic algorithms
+extends: scio:enum
+
+flags:
+  'ikkono:sig:ed25519': 
+    name: Ed25519
+    description: Ed25519 signature algorithm
+  'ikkono:enc:x25519':
+    name: X25519
+    description: X25519 encryption algorithm
+
+notes: >-
+  

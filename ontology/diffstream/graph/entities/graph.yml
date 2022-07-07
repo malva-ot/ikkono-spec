@@ -1,0 +1,27 @@
+name: Graph
+namespace: graph
+description: A labeled collection of documents
+
+attributes:
+  urn: 
+    type: string
+    description: The URN of the graph
+  namespace: 
+    type: string
+    description: >-
+      The namespace of the graph. May constrain the semantics or structure
+      of the graph content or statements
+
+relations:
+  rootDoc: 
+    type: ent:protocol.Document
+    relation: 1:1
+    description: The root document of the graph  
+  documents:
+    type: ent:protocol.Document[]
+    relation: 1:N
+    description: The documents committed to the graph
+  records:
+    type: ent:graph.Record[]
+    relation: 1:N
+    description: The records stored in the graph
