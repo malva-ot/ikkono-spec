@@ -1,0 +1,14 @@
+name: Privilege
+namespace: authz
+description: A single named privilege
+
+attributes:
+  moniker: default
+  displayName: default
+
+relations:
+  namespace:
+    type: ent:authz.Namespace
+    relation: N?:1
+    description: The namespace to which the privilege belongs
+  statements: default

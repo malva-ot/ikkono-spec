@@ -1,0 +1,18 @@
+name: Domain
+namespace: authz
+description: A collection of ontology definitions
+
+attributes:
+  moniker: default
+  displayName: default
+
+relations:
+  authority:
+    type: ent:authz.Authority
+    relation: N?:1
+    description: The owner of the Domain
+  versions:
+    type: ent:authz.DomainVersion[]
+    relation: 1:N
+    description: The versions of the domain
+  statements: default

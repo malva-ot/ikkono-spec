@@ -1,0 +1,14 @@
+name: Role
+namespace: authz
+description: A named collection of privileges
+
+attributes:
+  moniker: default
+  displayName: default
+
+relations:
+  privileges:
+    type: ent:authz.Privilege[]?
+    relation: 1:N?
+    description: The privileges assigned to the role
+  statements: default

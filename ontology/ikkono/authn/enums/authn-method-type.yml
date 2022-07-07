@@ -1,0 +1,44 @@
+name: AuthnMethodType
+namespace: authn
+description: Labels for known authentication methods
+extends: scio:enum
+
+members:
+  'ikkono:signature':
+    name: Signature
+    description: Cryptographic signature authentication
+  'ikkono:notary':
+    name: Notary
+    description: Authentications through a notary
+  'ikkono:multi-factor':
+    name: MultiFactor
+    description: A combination of methods that must be used together
+  'ikkono:password':
+    name: Password
+    description: >-
+      Authentication through a unique long-lived secret, implemented in a 
+      way that the principal can only have one secret value at a time. This is
+      the abstract representation of a traditional password
+  'ikkono:multi-key':
+    name: MultiKey
+    description: Authentication through a long-lived secret, allowed to be
+      implemented in a way that a principal may have multiple valid secret values
+      at a time. This is the abstract representation of a traditional API key
+  'ikkono:totp':
+    name: TOTP
+    description: Time-based one-time password as defined in RFC6238
+  'ikkono:sms':
+    name: SMS
+    description: >-
+      A secret code sent through the world SMS network. Implicitly validates
+      possession of a specific GSM device
+  'ikkono:phone':
+    name: Phone
+    description: >-
+      A secret code sent as an audio signal through the world telephone network. 
+      Implicitly validates access to a specific telephone line
+  'ikkono:email':
+    name: Email
+    description: >-
+      A secret code or link sent through the world internet mail network. Implicitly
+      validates access to a specific email account

@@ -1,0 +1,34 @@
+name: ConsensusAuthn
+namespace: authn
+description: >- 
+  A list of other principals' authentication methods which must be used in combination 
+  to authenticate on behalf of the issuing principal
+
+relations:
+  quorum:
+    type: int
+    description: The minimum number of specified methods which must be used together to fully authenticate
+  methods:
+    type: ent:authn.AuthnMethod[]
+    relation: 1:N
+    description: The list of allowed authentication methods
+
+notes: >-
+  The primary use case for consensus authentication is for delegation of agency from an authority
+  to multiple actors. For accountability and process safety, it would be wise for an authority to 
+  concurrently assign multiple actors as delegates, and then specify that they must authenticate 
+  using a shared consensus authentication method. This requires that, for example, at least two 
+  of three delegated actors would need to sign any action to be taken on behalf of the authority.
+
+  The consensus auth record belongs to (is issued by) the principal which wishes to authenticate, 
+  e.g. an issuing authority. The individual component methods each belong to other principals, 
+  usually actors, which will authenticate in order to act on behalf of the authority.
+
+  In order for some action to be valid, there must *also* be valid delegation (authz.Delegate)
+  records for each of the principals authenticating on behalf of the issuer. That is, the 
+  consensus auth specifies how the delegated actors must prove their identity, but does not 
+  in itself give those actors the power to act on behalf of the issuing authority, while the
+  delegate records grant the actors the power to act on behalf of the issuing authority but 
+  do not by themselves provide a means for the actors to authenticate. One consensus record 
+  in total plus one delegate record for each actor are used together to completely describe
+  a delegation from an authority to a set of actors.

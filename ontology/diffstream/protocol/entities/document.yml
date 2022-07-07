@@ -1,0 +1,32 @@
+name: Document
+namespace: protocol
+description: A complete, signed diffstream document
+extends: protocol.Container
+
+attributes:
+  docHash:
+    type: sha1
+    flags: key
+  docType:
+    type: enum:graph.DocType
+    description: The type of the document
+  docBlob:
+    type: byte[]
+    description: The raw bytes of the entire original document
+
+relations:
+  graph:
+    type: ent:graph:Graph
+    relation: N:1
+    description: The graph to which the document belongs
+  references:
+    type: ent:graph:DocReference[]
+    relation: 1:N?
+    description: The collection of document references
+  signatures:
+    type: ent:protocol.DocSignature[]
+    relation: 1:N?
+    description: The signatures on the document
+
+notes: >-
+  docHash must be the exact sha1 hash of the docBlob

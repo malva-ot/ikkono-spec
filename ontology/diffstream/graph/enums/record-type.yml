@@ -1,0 +1,14 @@
+name: RecordType
+namespace: graph
+description: The overall type of the record
+extends: scio:enum
+
+members:
+  'file':
+    name: File
+    value: 1
+    description: A raw bitstream or file
+  'object':
+    name: Object
+    value: 2
+    description: A structured object

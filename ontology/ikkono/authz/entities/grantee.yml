@@ -1,0 +1,5 @@
+name: Grantee
+namespace: authz
+description: The generalization of entities which can be granted rights within a ledger
+extends: authz.Passport | authz.Group | authz.Visa
+

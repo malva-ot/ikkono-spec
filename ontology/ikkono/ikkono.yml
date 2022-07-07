@@ -1,0 +1,56 @@
+name: ikkono
+description: The ontology of the ikkono IAM standard
+version: 0.1.0
+schema: scio/0.0
+
+imports:
+  - domain: diffstream
+    alias: ds
+    groups:
+      - code: graph
+        local: graph
+      - code: protocol
+        local: diffstream
+
+types:
+  docref:
+    extends: diffstream.DocReference
+  graph:
+    extends: graph.Graph
+  xid:
+    extends: string(20)
+    pattern: '^[0-9a-v]{20}$'
+    description: A 20-character base 32 encoding of a 12-byte integer following the Xid standard
+  moniker-type:
+    extends: string(*)
+    pattern: '^\Ll(\Ll|Nd|-)*$'
+    description: A lower-case, kebab-case semantic identifier
+
+defaults:
+  attributes:
+    key:
+      type: xid
+      flags: key,unique
+      op: create,read
+      description: A permanent, unique, random identifier for the record
+    moniker:
+      type: moniker-type
+      op: create,update,read
+      description: A locally unique semantic identifier for the record
+    displayName:
+      type: string(*)
+      op: create,update,read
+      description: A free form display name for the record
+    timestamp:
+      type: timestamp
+      op: create,read
+    statement:
+      type: ent:audit.Statement
+      op: create,read
+      description: The statement which created the applicable state record
+
+  relations:
+    statements:
+      type: ent:audit.Statement[]
+      relation: 1:N
+      description: The statements that declared or modified the record

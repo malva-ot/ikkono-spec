@@ -1,0 +1,24 @@
+name: Namespace
+namespace: authz
+description: A grouping for definitions within a domain
+
+attributes:
+  moniker: default
+  displayName: default
+
+relations:
+  domainVersion:
+    type: ent:authz.DomainVersion
+    relation: N:1
+    description: The domain version to which this namespace belongs
+  privileges:
+    type: ent:authz.Privilege[]
+    relation: 1:N
+    description: The privileges defined in this domain version
+  statements: default
+
+notes: >-
+  A namespace can implicitly be the sole *default* namespace of a domain by settings its moniker to 
+  an empty string (''). Referring to this namespace would take the form "example-domain::some-entity",
+  which is structurally identical to referring to a namespace with a non-empty moniker, e.g.:
+  "example-domain:a-namespace:some-entity".

@@ -1,0 +1,43 @@
+name: NotaryAuthn
+namespace: authn
+describe: Authentication by notary
+extends: authn.AuthnMethod
+
+attributes:
+  authMethodType:
+    type: enum:authn.AuthnMethodType?
+    description: The authentication method type code by which the notary must authenticate the issuer
+
+relation:
+  notary:
+    type: ent:authn.Principal
+    relation: N?:1
+    description: The principal which will authenticate as a notary
+  notaryAuthMethod:
+    type: ent:authn.AuthnMethod?
+    relation: N?:1?
+    description: >-
+      The method by which the notary will authenticate *itself*. If included, must be a 
+      previously defined authentication method for the notary principal
+
+notes: >-
+  If notaryAuthMethod is null, the issuer is saying they would trust the notary no matter how
+  the notary authenticates itself. If notaryAuthMethod is specified, then the issuer is saying
+  they only trust the notary if the notary uses that specific authentication method.
+
+  If authMethodType is null, the issuer is saying that the notary does not need to claim how 
+  the notary verified the issuer's identity. If authMethodType is not null, the issuer is saying
+  the notary must assert that the notary verified the issuer's identity using that specific 
+  authentication method type.
+
+  Notary authentication is the foundation of multi-factor authentication over ikkono. ikkono 
+  transactions cannot transmit the secrets required to actually prove authentication by password
+  or other secrets, let alone the hardware to verify SMS, biometrics, etc. But it can transmit 
+  the statement by
+  an issuer to trust another principal, which is then tasked with implementing the secondary 
+  authentication method described. 
+  
+  Ahmed can say over ikkono, "Trust Berta, she will ask me 
+  my password". Berta and Ahmed will negotiate the password through separate means, but whenever
+  asked, Berta can verify Ahmed's password and then declare over ikkono, using one of her keys,
+  that she verified Ahmed's password.

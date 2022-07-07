@@ -1,0 +1,44 @@
+name: Assignment
+namespace: authz
+description: An assignment of rights
+
+attributes:
+  grantee:
+    type: ent:authz.Grantee
+    description: The passport, visa, or group to which rights are assigned
+  rights:
+    type: ent:authz.Privilege | ent:authz.Role
+    description: The individual privilege, or the Role (a collection of privileges) being assigned
+  target:
+    type: urn
+    description: The optional resource or scope to which the assignment is restricted
+    # flags: indexed
+  constraint:
+    type: ent:authz.ConditionExpression
+    description: >-
+      An optional conditional constraint on the assignment. Used by the accountant to determine 
+      the response to an access question.
+  filter:
+    type: ent:authz.ConditionExpression
+    description: >-
+      An optional conditional filter on the assignment. Used by an application to filter the 
+      result set when access is allowed.
+
+relations:
+  statements: default
+  grantor:
+    type: ent:authn.Principal
+    relation: N?:1
+    description: The granting principal
+
+notes: >-
+  Constraints and filters have the same structure but different effects. Constraints limit which 
+  questions will receive an affirmative answer from the accountant to the application, while filters 
+  limit the contents of an allowed response from an application to the consumer.
+
+  A query which is more general than any defined constraint would receive an access denied (403) 
+  response. 
+
+  A query which is more general than any defined filter is expected; it would receive an access 
+  allowed (20x) response but the result set would be automatically filtered *by the application, 
+  not by the accountant*, to those resources which match the filter(s).

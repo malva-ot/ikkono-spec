@@ -1,0 +1,8 @@
+name: ObjectRecord
+namespace: graph
+description: A record that is a structured object
+
+attributes:
+  objectType:
+    type: urn
+    description: The URN of the object type

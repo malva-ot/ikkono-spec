@@ -1,0 +1,22 @@
+name: ComparisonOperator
+namespace: authz
+description: A known comparison operator for use in filters and constraints
+extends: scio:enum
+
+members:
+  'ikkono:equal':
+    name: Equal
+    value: 10
+    description: Equality (==) operator
+  'ikkono:not-equal':
+    name: NotEqual
+    value: 11
+    description: Non-equality (!=) operator
+  'ikkono:match':
+    name: Match
+    value: 12
+    description: Regex match (~) operator
+  'ikkono:like':
+    name: Like
+    value: 13
+    description: Simple pattern match operator

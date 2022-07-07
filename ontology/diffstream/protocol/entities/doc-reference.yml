@@ -1,0 +1,14 @@
+name: DocReference
+namespace: protocol
+description: A reference to a document
+
+attributes:
+  docHash: 
+    type: sha1
+    description: The docHash of the reference target
+  graph:
+    type: ent:graph.Graph?
+    description: >-
+      The graph in which the target document is defined. 
+      Empty means it is in the same graph as the document 
+      which contains the reference.

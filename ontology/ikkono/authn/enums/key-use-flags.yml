@@ -1,0 +1,15 @@
+name: KeyUseFlags
+namespace: authn
+description: Flags indicating how a cryptographic key may be used
+extends: scio:enum
+
+flags:
+  'none':
+    name: None
+    description: No restrictions on key usage
+  'ikkono:signature':
+    name: Signature
+    description: The key may be used for cryptographic signatures
+  'ikkono:encryption':
+    name: Encryption
+    description: The key may be used to encrypt content

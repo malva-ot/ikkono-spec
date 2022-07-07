@@ -1,0 +1,45 @@
+name: Address
+displayName: Uniform abstract content address
+alias: UCA
+flags: immutable
+
+attributes:
+  schema: 
+    type: UCA?
+    description: The UCA of an address schema
+  authority:
+    type: xid? | string?
+    description: The xid key or local alias of the authority which defines the address
+  partitionName:
+    type: Name?
+    description: An identifier of a content partition
+  partitionKey:
+    type: Value?
+    description: A unique key value for the content partition
+  path:
+    type: Name?
+    description: A multi-segment name of the content parent path
+  itemName:
+    type: Name?
+    description: A multi-segment name of the content item itself
+  itemKey:
+    type: Value?
+    description: A unique key value for the content item itself
+  
+notes: |
+  The semantic significance of each clause of the UCA is as follows:
+  - schema       : Indicates the purpose or character of the address, as well as rules for the how the address 
+                   may be described, constrained, or serialized
+  - authority    : The principal which declares the address. Provides permanent disambiguation
+                   between otherwise similar or identical addresses
+  - partition    : Each partition forms a topologically connected information space, which is topologically 
+                   disconnected from any other partition. Partitions may import items from other 
+                   partitions, but imports must be strictly non-cyclical to be valid.
+  - partitionKey : A partition key represents an identifier for a unique instance of or variance from
+                   a common underlying partition. Examples include versions of a component, environments
+                   of a service, or translations of a natural language construct.
+  - path         : The path is a semantic container name within a single partition. It represents an 
+                   implementation-agnostic means of denoting a proper subset of the entire partition space
+  - itemName     : The name of the content item itself, relative to its container (path)
+  - itemKey      : An item key represents an identifier for a unique instance of or variance from
+                   a common underlying item. Examples includes records within a collection

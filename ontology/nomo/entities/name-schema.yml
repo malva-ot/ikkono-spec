@@ -1,0 +1,44 @@
+name: NameSchema
+description: Constraints on how a name may be constructed or serialized
+flags: immutable
+
+attributes:
+  name: 
+    type: moniker
+    description: An identifier for the name schema
+  displayName: 
+    type: string?
+    description: A display name for the name schema
+  description:
+    type: string?
+    description: A description for the name schema
+  separator:
+    type: string
+    description: A literal string to be inserted between name segments
+  openDelimiter:
+    type: string?
+    description: A literal string to be prepended to each name segment
+  closeDelimiter:
+    type: string?
+    description: A literal string to be appended to each name segment
+  delimRequired:
+    type: bool?
+    description: Whether segment delimiters are always required
+  segmentPattern:
+    type: regex?
+    description: A regular expression which name segments must match to be valid
+  minCount:
+    type: int?
+    description: A minimum number of segments
+  maxCount:
+    type: int?
+    description: A maximum number of segments
+  maxLength:
+    type: int?
+    description: A maximum number of characters for the entire serialized name
+  keyType:
+    type: enum:KeyType
+    description: The type of the item key
+  keyPattern:
+    type: regex?
+    description: A regular expression which scalar string item keys must match to be valid

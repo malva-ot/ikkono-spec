@@ -1,0 +1,14 @@
+name: Statement
+namespace: protocol
+description: A diffstream statement in the body of a document
+extends: graph.Container
+
+relations:
+  doc:
+    type: ent:protocol.Document
+    relation: N:1
+    description: The document which contains the statement
+  resource:
+    type: ent:*?
+    relation: N:N
+    description: The resource referred to by the resourceUrn

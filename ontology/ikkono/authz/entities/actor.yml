@@ -1,0 +1,4 @@
+name: Actor
+namespace: authz
+description: An ikkono actor. Represents the trust root of an individual user, service, or other entity capable of acting and deciding
+extends: authn.Principal

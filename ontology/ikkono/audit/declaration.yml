@@ -1,0 +1,10 @@
+name: Declaration
+namespace: audit
+description: A statement about data or content
+extends: audit.Statement
+
+relations:
+  record:
+    type: ent:*
+    relation: N?:1
+    description: The resource which was modified by this declaration

@@ -1,0 +1,11 @@
+name: ConditionExpression
+namespace: authz
+description: A collection of conditional clauses which define a complete condition. A given query must match all clauses
+
+attributes:
+  clauses:
+    type: ent:authz.ConditionClause[]
+    description: The individual clauses of the filter
+
+relations:
+  statements: default

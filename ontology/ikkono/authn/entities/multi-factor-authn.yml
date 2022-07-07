@@ -1,0 +1,17 @@
+name: MultiFactorAuthn
+namespace: authn
+description: A list of other authentication methods that may be used in combination to authenticate a principal
+extends: authn.AuthnMethod
+
+relations: 
+  methods:
+    type: ent:authn.AuthnMethod[]
+    relation: 1:N
+    description: The list of methods that must be used together
+
+notes: >-
+  MultiFactorAuth gathers together a list of individual authentication methods which
+  can be used to prove a principal's identity when used together. Generally the individual
+  authentication methods should be declared with a restriction that they can only be
+  used in a multi-factor authentication method, while the multi-factor authentication itself
+  is unrestricted.

@@ -1,0 +1,15 @@
+name: SignatureAuthn
+namespace: authn
+description: Authentication by asymmetric key cryptographic signature
+extends: authn.AuthnMethod
+
+attributes:
+  algorithm:
+    type: enum:authn.CryptoAlgorithm
+    description: The cryptographic signing algorithm
+
+relations:
+  signatureKey:
+    type: ent:authn.AsymmetricKey
+    relation: N?:1
+    description: The key to be used in authentication

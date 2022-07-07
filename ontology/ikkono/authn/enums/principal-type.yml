@@ -1,0 +1,12 @@
+name: PrincipalType
+namespace: authn
+description: Types of principals
+extends: scio:enum
+
+members:
+  'ikkono:authority':
+    name: Authority
+    description: An ikkono authority
+  'ikkono:actor':
+    name: Actor
+    description: An ikkono actor

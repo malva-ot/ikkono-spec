@@ -1,0 +1,33 @@
+type: AsymmetricKey
+namespace: authn
+description: The public portions of an asymmetric key
+
+attributes:
+  moniker: default
+  displayName: default
+  algorithm:
+    type: enum:authn.CryptoAlgorithm
+    description: The cryptographic algorithm identifier
+  keyParams:
+    type: object
+    description: The individual parameters necessary to describe the public key
+  use:
+    type: enum:authn.KeyUseFlags
+    description: The allowed uses for the key
+  validFrom:
+    type: dateTime?
+    description: An optional first datetime at which the key is valid
+  validTo:
+    type: dateTime?
+    description: An optional last datetime at which the key is valid
+  thumbprint:
+    type: sha1
+    description: The sha1 thumbprint of the key as declared in the originating document
+
+relations:
+  statements: default
+  principal:
+    type: ent:authn.Principal
+    relation: N?:1
+    description: The principal to whom the key belongs
+

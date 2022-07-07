@@ -1,0 +1,11 @@
+name: nomo
+description: The ontology of the nomo content addressing standard
+version: 0.1.0
+schema: scio/0.0
+
+types:
+  Value:
+    extends: Scalar | Tuple[Scalar] | Map[string,Scalar]
+    description: A value is a union type which can be either a single scalar value, 
+      an ordered set (tuple) of a known number of scalar values, or a map
+      of known string key names to scalar values

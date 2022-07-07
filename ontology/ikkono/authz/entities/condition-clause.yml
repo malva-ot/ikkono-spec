@@ -1,0 +1,20 @@
+name: ConditionClause
+namespace: authz
+description: A single clause of a condition
+
+attributes:
+  attribute:
+    type: string
+    description: The code or name of the attribute
+  operator:
+    type: enum:authz.ComparisonOperator
+    description: The comparison operator to apply
+  value:
+    type: string
+    description: The string-form value to compare to
+
+relations:
+  expression:
+    type: ent:authz.ConditionExpression
+    relation: N:1
+    description: The expression to which this clause belongs

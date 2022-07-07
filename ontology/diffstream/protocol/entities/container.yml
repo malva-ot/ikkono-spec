@@ -1,0 +1,32 @@
+name: Container
+description: An abstract protocol content container
+flags: abstract
+
+attributes:
+  verb:
+    type: string
+    description: The verb of the container start line
+  resourceUrn:
+    type: string
+    description: The raw urn of the target resource from the container start line
+  protocol:
+    type: string
+    description: The protocol code from the container start line
+  protocolVersion:
+    type: version
+    description: The version number of the protocol from the container start line
+  protocolNamespace:
+    type: urn-namespace?
+    description: >-
+      The namespace of the protocol from the container start line. Used to
+      specify the semantics of the container header and possibly its content type.
+  contentType:
+    type: string?
+    description: The MIME type of the container's content stream
+  contentBlob:
+    type: blob?
+    description: The blob of the container's content stream
+
+  headers:
+    type: ent:protocol.Header[]
+    description: The raw headers of the container

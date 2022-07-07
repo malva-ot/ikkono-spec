@@ -1,0 +1,40 @@
+name: AddressSchema
+description: Constraints and aliases on the parts of a UCA
+
+attributes:
+  name: 
+    type: moniker
+    description: An identifier for the address schema
+  displayName: 
+    type: string?
+    description: A display name for the address schema
+  description:
+    type: string?
+    description: A description for the address schema
+  partitionAlias:
+    type: string?
+    description: An alias for the partition clause, to use instead of 'partition'
+  partitionSchema:
+    type: NameSchema
+    description: A schema describing how partition segments and keys should be constrained or serialized
+  partitionKeyAlias:
+    type: string?
+    description: An alias for the partition key, to use instead of 'key'
+  pathAlias:
+    type: string?
+    description: An alias for the path clause, to use instead of 'path'
+  pathSchema:
+    type: NameSchema
+    description: A schema describing how path segments should be constrained or serialized
+  nameAlias:
+    type: string? 
+    description: An alias for the name clause, to use instead of 'name'
+  nameSchema:
+    description: A schema describing how the name segments and keys should be constrained or serialized
+  itemKeyAlias:
+    type: string?
+    description: An alias for the item key, to use instead of 'key'
+  
+    
+
+  

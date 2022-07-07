@@ -1,0 +1,27 @@
+name: Delegate
+namespace: authn
+description: A delegation of representation from one principal to another (an agent)
+
+relations:
+  principal:
+    type: ent:authn.Principal
+    relation: N?:1
+    description: The delegating actor or authority
+  agent:
+    type: ent:authn.Principal
+    relation: N?:1
+    description: The agent actor or authority
+  authnMethod:
+    type: ent:authn.AuthnMethod
+    relation: N?:1
+    description: >-
+      The authentication method which must be used to authenticate the *agent*. May either
+      refer to an authentication method declared by the individual agent, or to a 
+      consensus auth method declared by the issuing principal, which in turn includes
+      an auth method declared by the agent.
+  statements: default
+
+notes: >-
+  A delegate allows one principal to act on behalf of another. An issuing principal (often 
+  an authority) can prevent a single actor from acting unilaterally by specifying a 
+  consensus auth method as the required authentication method (authnMethod).

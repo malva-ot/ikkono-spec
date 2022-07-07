@@ -1,0 +1,26 @@
+name: HeaderType
+namespace: protocol
+description: The type of a document or statement header
+extends: scio:enum
+
+members:
+  '': 
+    name: Raw
+    value: 1
+    description: A raw header
+  'diffstream:docref':
+    name: Ref
+    value: 2
+    description: A document reference header
+  'diffstream:sigref':
+    name: SignatureRef
+    value: 3
+    description: A signature reference header
+  'diffstream:control':
+    name: Control
+    value: 10
+    description: A control header statement, such as a var declaration
+  'diffstream:prop':
+    name: Property
+    value: 20
+    description: A header-encoded property
